@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.ziven.ssm.model.dao.UserDao">
+  <resultMap id="BaseResultMap" type="me.ziven.ssm.model.entity.SysUser">
+    <result column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="age" jdbcType="INTEGER" property="age"/>
+  </resultMap>
+  <insert id="insert" parameterType="me.ziven.ssm.model.entity.SysUser">
+    insert into sys_user (id, name, age
+    )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}
+    )
+  </insert>
+
+  <update id="update" parameterType="me.ziven.ssm.model.entity.SysUser">
+    UPDATE sys_user SET name = #{name},age = #{age}
+    WHERE id=#{id}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, age
+    from sys_user
+  </select>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM sys_user WHERE id = #{id}
+  </delete>
+
+  <select id="findById" parameterType="int" resultMap="BaseResultMap">
+    SELECT * FROM sys_user WHERE id = #{id}
+  </select>
+</mapper>
